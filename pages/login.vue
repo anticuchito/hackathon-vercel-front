@@ -1,5 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useAuth } from '@/store/auth';
 
+definePageMeta({
+  layout: 'not-logged-in',
+});
+
+const auth = useAuth();
+
+const email = ref('');
+const password = ref('');
+
+const handleLogin = async () => {
+  if (email.value === '' || password.value === '') return;
+
+  await auth.login(email.value, password.value);
+};
+</script>
+
+<!-- TODO add validation -->
 <template>
   <div
     class="mx-auto flex max-w-md flex-col items-center justify-center space-y-6 px-4 py-12 sm:px-6 lg:px-8"
@@ -11,7 +29,7 @@
       </p>
     </div>
     <div class="w-full space-y-4">
-      <form class="space-y-4">
+      <form class="space-y-4" @submit.prevent="handleLogin">
         <div>
           <label
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
@@ -25,6 +43,7 @@
             placeholder="name@example.com"
             required="true"
             type="email"
+            v-model="email"
           />
         </div>
         <div>
@@ -39,6 +58,7 @@
             id="password"
             required="true"
             type="password"
+            v-model="password"
           />
         </div>
         <button
@@ -48,22 +68,12 @@
           Sign in
         </button>
         <div class="text-center text-sm text-muted-foreground">
-          Don't have an account?{" "}
+          Don't have an account?
           <a class="font-medium underline underline-offset-4" href="/register">
             Register
           </a>
         </div>
       </form>
-      <div
-        data-orientation="horizontal"
-        role="none"
-        class="shrink-0 bg-border h-[1px] w-full my-6"
-      ></div>
-      <div class="grid grid-cols-3 gap-4">
-        <button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 col-span-1"
-        ></button>
-      </div>
     </div>
   </div>
 </template>

@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  layout: 'not-logged-in',
+});
+</script>
 
 <!-- this is home page for landing -->
 <template>

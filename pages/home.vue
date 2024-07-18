@@ -1,20 +1,5 @@
-import { DateButton } from '../.nuxt/components';
 <template>
   <div>
-    <header class="bg-background text-foreground py-2 px-4 md:px-6 border-b">
-      <div class="flex justify-between items-center max-w-4xl mx-auto">
-        <nav class="flex gap-4">
-          <a class="hover:underline text-sm" href="#">
-            Presupuestos recomendados
-          </a>
-          <a class="hover:underline text-sm" href="#">
-            Presupuestos generados por la comunidad
-          </a>
-          <a class="hover:underline text-sm" href="#"> Vuelos </a>
-          <a class="hover:underline text-sm" href="#"> Hoteles </a>
-        </nav>
-      </div>
-    </header>
     <div class="w-full max-w-4xl mx-auto py-12 md:py-20">
       <div class="px-4 md:px-6 space-y-8">
         <div class="text-center space-y-2">
@@ -115,9 +100,9 @@ const formatter = ref({
   month: 'MMM',
 });
 
-watchEffect(() => {
-  console.log('date', date.value);
-});
+// watchEffect(() => {
+//   console.log('date', date.value);
+// });
 </script>
 
 <style scoped></style>
