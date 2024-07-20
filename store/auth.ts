@@ -1,6 +1,7 @@
 // import axiosClient from '../plugins/axios-client';
 import type { LoginResponse, User } from './types';
 import { useAxios } from '@/composables/useAxios';
+import {ref} from 'vue';
 
 export const useAuth = defineStore('auth', () => {
   const user = ref<User | null>(null);

@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // import {  } from "";
+import ChatBox from '@/components/ChatBox.vue';
+
 </script>
 
 <template>
@@ -21,7 +23,8 @@
   <main>
     <NuxtPage />
   </main>
-
+ <!-- ChatBox Component -->
+ <ChatBox />
   <!-- <footer
     class="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t"
   >

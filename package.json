@@ -10,14 +10,18 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^0.0.36",
+    "@ai-sdk/vue": "^0.0.18",
     "@nuxt/icon": "^1.1.1",
     "@pinia/nuxt": "^0.5.1",
+    "ai": "^3.2.29",
     "axios": "^1.7.2",
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "nuxt": "^3.12.3",
     "vue": "latest",
-    "vue-tailwind-datepicker": "^1.7.3"
+    "vue-tailwind-datepicker": "^1.7.3",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.12.0",

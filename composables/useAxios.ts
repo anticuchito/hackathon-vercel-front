@@ -12,7 +12,7 @@ const authenticatedApiAxios: AxiosInstance = axios.create({
   withCredentials: true, // Permitir el envío de cookies
 });
 
-authenticatedApiAxios.interceptors.request.use((config) => {
+authenticatedApiAxios.interceptors.request.use((config:any) => {
   const token = useCookie('auth_token').value;
   console.log('Token from cookies:', token); // Verificar el token
   if (token) {
