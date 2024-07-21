@@ -24,7 +24,11 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@iconify-json/mdi": "^1.1.67",
+    "@iconify-json/uil": "^1.1.8",
     "@nuxtjs/tailwindcss": "^6.12.0",
-    "@tailwindcss/forms": "^0.5.7"
+    "@tailwindcss/forms": "^0.5.7",
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/nuxt": "^10.11.0"
   }
 }

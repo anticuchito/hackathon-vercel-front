@@ -20,7 +20,12 @@ export default defineNuxtConfig({
   },
   modules: [
     '@nuxtjs/tailwindcss',
+    '@vueuse/nuxt',
     ['@pinia/nuxt', { autoImports: ['defineStore'] }],
     '@nuxt/icon',
   ],
+
+  icon: {
+    componentName: 'icon',
+  },
 });

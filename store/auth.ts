@@ -11,6 +11,7 @@ export const useAuth = defineStore('auth', () => {
   //? 2. Define the getters
 
   //? 3. Define the actions
+  //FIXME:add persistance to auth store becaus is not persintant dont redirect to home apropiatly and fix redorect functionality if this first time user enter to the page
 
   const login = async (email: string, password: string) => {
     console.log('entered login');
