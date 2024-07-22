@@ -1,7 +1,7 @@
 // import axiosClient from '../plugins/axios-client';
 import type { LoginResponse, User } from './types';
 import { useAxios } from '@/composables/useAxios';
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 export const useAuth = defineStore('auth', () => {
   const user = ref<User | null>(null);
@@ -31,6 +31,17 @@ export const useAuth = defineStore('auth', () => {
     tokenCookie.value = data.token;
     // aca las cosas se guardan en cookies por
     isAuthenticated.value = true;
+
+    // persisted state for store
+
+    const storeAuthData = {
+      user: user.value,
+      token: tokenCookie.value,
+      isAuthenticated: isAuthenticated.value,
+    };
+
+    localStorage.setItem('authData', JSON.stringify(storeAuthData));
+
     useRouter().replace('/home');
     console.log('user logged in', user.value);
   };
@@ -48,7 +59,7 @@ export const useAuth = defineStore('auth', () => {
     useRouter().replace('/login');
   };
 
-  const checkAuth = () => {
+  const checkAuth = async () => {
     const tokenCookie = useCookie('auth_token');
     console.log('Token from cookies:', tokenCookie.value);
     isAuthenticated.value = !!token.value;
@@ -67,13 +78,35 @@ export const useAuth = defineStore('auth', () => {
     }
   };
 
+  const cleanStore = () => {
+    localStorage.removeItem('authData');
+    user.value = null;
+    isAuthenticated.value = false;
+    token.value = null;
+  };
+
+  const persistAuthData = () => {
+    const storeData = localStorage.getItem('authData');
+
+    if (!storeData) return;
+
+    const { user, token: tokenData, isAuthenticated } = JSON.parse(storeData);
+
+    user.value = JSON.parse(user);
+    token.value = tokenData;
+    isAuthenticated.value = isAuthenticated;
+  };
+
   return {
     user,
     isAuthenticated,
+    token,
     login,
     checkAuth,
     redirectIfNotLogged,
     register,
+    cleanStore,
+    persistAuthData,
   };
 });
 
@@ -86,3 +119,4 @@ type dataRegister = {
   dateOfBirth: string;
   address: string;
 };
+type AuthDataType = Record<string, string>;
