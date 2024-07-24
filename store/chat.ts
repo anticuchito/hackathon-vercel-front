@@ -28,9 +28,8 @@ export const useChatStore = defineStore('chat', () => {
           done = streamDone;
           if (value) {
             let chunk = decoder.decode(value, { stream: true });
-            chunk = chunk.replace(/^data: /gm, ''); // Remove "data: " prefix
+            chunk = chunk.replace(/^data: /gm, ''); 
 
-            // Add space at the beginning of the first chunk
             if (isFirstChunk) {
               chunk = ' ' + chunk.trim();
               isFirstChunk = false;
@@ -38,12 +37,12 @@ export const useChatStore = defineStore('chat', () => {
               chunk = chunk.trim();
             }
 
-            fullText += chunk + ' '; // Add space after each chunk
+            fullText += chunk + ' ';
           }
         }
       }
 
-      console.log('Full response received:', fullText.trim());
+      // console.log('Full response received:', fullText.trim());
       messages.value.push({ role: 'assistant', content: fullText.trim() });
     } catch (error) {
       console.error('Error sending message:', error);
