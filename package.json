@@ -12,6 +12,7 @@
   "dependencies": {
     "@ai-sdk/openai": "^0.0.36",
     "@ai-sdk/vue": "^0.0.18",
+    "@chenfengyuan/vue-carousel": "^2.0.0",
     "@nuxt/icon": "^1.1.1",
     "@pinia/nuxt": "^0.5.1",
     "ai": "^3.2.29",
@@ -19,6 +20,7 @@
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "nuxt": "^3.12.3",
+    "swiper": "^11.1.7",
     "vue": "latest",
     "vue-tailwind-datepicker": "^1.7.3",
     "zod": "^3.23.8"

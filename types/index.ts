@@ -81,6 +81,7 @@ export interface Accommodation {
     description: string;
     bestTravelTime: string;
     reasonToVisit: string;
+    images: string[];
     createdAt: string;
     updatedAt: string;
     accommodations: Accommodation[];
