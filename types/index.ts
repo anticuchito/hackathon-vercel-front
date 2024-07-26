@@ -1,4 +1,56 @@
 
+export interface User {
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+  surname: string;
+  dateOfBirth: Date;
+  phoneNumber?: string;
+  address?: string;
+  profilePicture?: string;
+  trips: string[];
+  favoriteTrips: string[];
+  tripsCreated: string[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface TripCreation {
+  origin: string;
+  destination: string;
+  startDate: Date;
+  endDate: Date;
+  minBudget: number;
+  maxBudget: number;
+  adults: number;
+  minors: number;
+  userId?: string;
+}
+export interface Trip {
+  id: string;
+  origin: string;
+  destination: string;
+  startDate: string;
+  endDate: string;
+  duration: number;
+  minBudget: number;
+  maxBudget: number;
+  status: string;
+  notes?: string;
+  adults: number;
+  minors: number;
+  users: User[];
+  accommodations: Accommodation[];
+  itineraries: Itinerary[];
+  pointsOfInterest: PointOfInterest[];
+  activities: Activity[];
+  flights: Flight[];
+  itineraryDetails: Itinerary[];
+  restaurants: Restaurant[];
+  createdAt: string;
+  updatedAt: string;
+}
 export interface Accommodation {
     id: string;
     name: string;
@@ -89,5 +141,16 @@ export interface Accommodation {
     pointsOfInterest: PointOfInterest[];
     activities: Activity[];
     restaurants: Restaurant[];
+  }
+  
+  export interface Flight {
+    id: string;
+    airline: string;
+    flightNumber: string;
+    departureTime: Date;
+    arrivalTime: Date;
+    price: number;
+    createdAt: string;
+    updatedAt: string;
   }
   
