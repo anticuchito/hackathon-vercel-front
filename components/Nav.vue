@@ -71,7 +71,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <nav class="bg-gray-800">
+  <nav class="bg-green-800">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
       <div class="relative flex h-16 items-center justify-between">
         <!-- Mobile menu button -->
@@ -132,7 +132,7 @@ export default defineComponent({
         <!-- Navigation links (hidden on mobile) -->
         <div class="hidden sm:flex sm:items-center sm:justify-center sm:flex-1">
           <div class="flex space-x-4 items-center	">
-            <div class="relative group" @mouseleave="toggleDropdown(null)">
+            <div class="relative group" @mouseleave="toggleDropdown(null)" style="margin-top: -2px;">
               <a
                 href="#"
                 class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
@@ -156,7 +156,7 @@ export default defineComponent({
                 </ul>
               </div>
             </div>
-            <div class="relative group" @mouseleave="toggleDropdown(null)">
+            <div class="relative group" @mouseleave="toggleDropdown(null)" style="margin-top: -2px;">
               <a
                 href="#"
                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
@@ -323,6 +323,9 @@ export default defineComponent({
 
   
   <style scoped>
+  nav{
+    background-color: rgb(20 61 35);
+  }
   .wrapper-nav {
     max-width: 1400px;
     margin: 0 auto;
