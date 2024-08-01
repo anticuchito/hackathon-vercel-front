@@ -23,6 +23,19 @@ export const useAccommodationStore = defineStore('accommodation', {
         this.loading = false;
       }
     },
+    async fetchAccommodationBySlug(slug: string) {
+      this.loading = true;
+      this.error = null;
+      const { axiosAdminInstance } = useAxios();
+      try {
+        const response = await axiosAdminInstance.get(`/accommodations/slug/${slug}`);
+        this.accommodation = response.data;
+      } catch (error: any) {
+        this.error = 'Failed to fetch accommodation data';
+      } finally {
+        this.loading = false;
+      }
+    },
     async fetchAccommodationsByCity(city: string) {
       this.loading = true;
       this.error = null;

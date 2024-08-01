@@ -11,6 +11,10 @@ export const usePointOfInterest = () => {
     await pointOfInterestStore.fetchPointOfInterestById(id);
   };
 
+  const fetchPointOfInterestBySlug = async (slug: string) => {
+    await pointOfInterestStore.fetchPointOfInterestBySlug(slug);
+  };
+
   const fetchPointsOfInterestByCity = async (city: string) => {
     await pointOfInterestStore.fetchPointsOfInterestByCity(city);
   };
@@ -25,6 +29,7 @@ export const usePointOfInterest = () => {
     loading,
     error,
     fetchPointOfInterestById,
+    fetchPointOfInterestBySlug,
     fetchPointsOfInterestByCity,
     createPointOfInterest,
   };

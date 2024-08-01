@@ -11,6 +11,10 @@ export const useActivity = () => {
     await activityStore.fetchActivityById(id);
   };
 
+  const fetchActivityBySlug = async (slug: string) => {
+    await activityStore.fetchActivityBySlug(slug);
+  };
+
   const fetchActivitiesByCity = async (city: string) => {
     await activityStore.fetchActivitiesByCity(city);
   };
@@ -25,6 +29,7 @@ export const useActivity = () => {
     loading,
     error,
     fetchActivityById,
+    fetchActivityBySlug,
     fetchActivitiesByCity,
     createActivity,
   };

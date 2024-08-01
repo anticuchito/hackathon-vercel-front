@@ -23,6 +23,19 @@ export const useActivityStore = defineStore('activity', {
         this.loading = false;
       }
     },
+    async fetchActivityBySlug(slug: string) {
+      this.loading = true;
+      this.error = null;
+      const { axiosAdminInstance } = useAxios();
+      try {
+        const response = await axiosAdminInstance.get(`/activities/slug/${slug}`);
+        this.activity = response.data;
+      } catch (error: any) {
+        this.error = 'Failed to fetch activity data';
+      } finally {
+        this.loading = false;
+      }
+    },
     async fetchActivitiesByCity(city: string) {
       this.loading = true;
       this.error = null;

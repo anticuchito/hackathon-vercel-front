@@ -23,6 +23,19 @@ export const useRestaurantStore = defineStore('restaurant', {
         this.loading = false;
       }
     },
+    async fetchRestaurantBySlug(slug: string) {
+      this.loading = true;
+      this.error = null;
+      const { axiosAdminInstance } = useAxios();
+      try {
+        const response = await axiosAdminInstance.get(`/restaurants/slug/${slug}`);
+        this.restaurant = response.data;
+      } catch (error: any) {
+        this.error = 'Failed to fetch restaurant data';
+      } finally {
+        this.loading = false;
+      }
+    },
     async fetchRestaurantsByCity(city: string) {
       this.loading = true;
       this.error = null;

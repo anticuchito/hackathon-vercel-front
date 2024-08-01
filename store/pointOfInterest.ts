@@ -23,6 +23,19 @@ export const usePointOfInterestStore = defineStore('pointOfInterest', {
         this.loading = false;
       }
     },
+    async fetchPointOfInterestBySlug(slug: string) {
+      this.loading = true;
+      this.error = null;
+      const { axiosAdminInstance } = useAxios();
+      try {
+        const response = await axiosAdminInstance.get(`/pointsOfInterest/slug/${slug}`);
+        this.pointOfInterest = response.data;
+      } catch (error: any) {
+        this.error = 'Failed to fetch point of interest data';
+      } finally {
+        this.loading = false;
+      }
+    },
     async fetchPointsOfInterestByCity(city: string) {
       this.loading = true;
       this.error = null;

@@ -11,6 +11,10 @@ export const useAccommodation = () => {
     await accommodationStore.fetchAccommodationById(id);
   };
 
+  const fetchAccommodationBySlug = async (slug: string) => {
+    await accommodationStore.fetchAccommodationBySlug(slug);
+  };
+
   const fetchAccommodationsByCity = async (city: string) => {
     await accommodationStore.fetchAccommodationsByCity(city);
   };
@@ -25,6 +29,7 @@ export const useAccommodation = () => {
     loading,
     error,
     fetchAccommodationById,
+    fetchAccommodationBySlug,
     fetchAccommodationsByCity,
     createAccommodation,
   };

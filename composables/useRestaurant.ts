@@ -11,6 +11,10 @@ export const useRestaurant = () => {
     await restaurantStore.fetchRestaurantById(id);
   };
 
+  const fetchRestaurantBySlug = async (slug: string) => {
+    await restaurantStore.fetchRestaurantBySlug(slug);
+  };
+
   const fetchRestaurantsByCity = async (city: string) => {
     await restaurantStore.fetchRestaurantsByCity(city);
   };
@@ -25,6 +29,7 @@ export const useRestaurant = () => {
     loading,
     error,
     fetchRestaurantById,
+    fetchRestaurantBySlug,
     fetchRestaurantsByCity,
     createRestaurant,
   };
