@@ -20,6 +20,7 @@
     "date-fns": "^3.6.0",
     "dayjs": "^1.11.11",
     "nuxt": "^3.12.3",
+    "nuxt-swiper": "^1.2.2",
     "swiper": "^11.1.7",
     "vue": "latest",
     "vue-tailwind-datepicker": "^1.7.3",

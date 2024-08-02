@@ -23,8 +23,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     ['@pinia/nuxt', { autoImports: ['defineStore'] }],
     '@nuxt/icon',
+    'nuxt-swiper'
   ],
-
   icon: {
     componentName: 'icon',
   },

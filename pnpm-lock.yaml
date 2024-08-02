@@ -38,6 +38,9 @@ importers:
       nuxt:
         specifier: ^3.12.3
         version: 3.12.3(@parcel/watcher@2.4.1)(@types/node@20.14.11)(ioredis@5.4.1)(magicast@0.3.4)(rollup@4.18.1)(terser@5.31.3)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3))
+      nuxt-swiper:
+        specifier: ^1.2.2
+        version: 1.2.2(magicast@0.3.4)(rollup@4.18.1)
       swiper:
         specifier: ^11.1.7
         version: 11.1.7
@@ -2782,6 +2785,9 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
+  nuxt-swiper@1.2.2:
+    resolution: {integrity: sha512-y4s/srISP4OuhXbYg9/W1/6EWnbcoHRGEKBKAvGP0I2h0b3enhqZNEk7854M3F89ys8waacBXektPzamgl5xwQ==}
+
   nuxt@3.12.3:
     resolution: {integrity: sha512-Qdkc+ucWwFcKsiL/OTF87jbgyFSymwPRKiiu0mvzsd/RXTn4hGiBduAlF3f7Yy0F9pDjSj8XHKDSnHYsDzm6rA==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -3482,6 +3488,10 @@ packages:
     resolution: {integrity: sha512-OoohrmuUlBs8B8o6MB2Aevn+pRIH9zDALSR+6hhqVfa6fRwG/Qw9VUMSMW9VNg2CFc/MTIfabtdOVl9ODIJjpw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
+
+  swiper@10.3.1:
+    resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
+    engines: {node: '>= 4.7.0'}
 
   swiper@11.1.7:
     resolution: {integrity: sha512-2EpQvhgKb+DNbi8/i9uRXhddivcMZQxca341t2NZYV1xroCR2p4YtYd3azuqRQ4OEBGcG4nv3aN24O80bMipow==}
@@ -6861,6 +6871,15 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
+  nuxt-swiper@1.2.2(magicast@0.3.4)(rollup@4.18.1):
+    dependencies:
+      '@nuxt/kit': 3.12.3(magicast@0.3.4)(rollup@4.18.1)
+      swiper: 10.3.1
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+
   nuxt@3.12.3(@parcel/watcher@2.4.1)(@types/node@20.14.11)(ioredis@5.4.1)(magicast@0.3.4)(rollup@4.18.1)(terser@5.31.3)(vite@5.3.4(@types/node@20.14.11)(terser@5.31.3)):
     dependencies:
       '@nuxt/devalue': 2.0.2
@@ -7668,6 +7687,8 @@ snapshots:
       css-what: 6.1.0
       csso: 5.0.5
       picocolors: 1.0.1
+
+  swiper@10.3.1: {}
 
   swiper@11.1.7: {}
 
