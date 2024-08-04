@@ -23,9 +23,17 @@ const handleLogin = async () => {
     // or show error messages
   }
   isLoading.value = true;
-  await auth.login(formData.email, formData.password);
-  // maybe function login will toast error if not success
-  isLoading.value = false;
+
+  try {
+    await auth.login(formData.email, formData.password);
+    // maybe function login will toast error if not success
+    isLoading.value = false;
+  } catch (error) {
+    // handle error
+    // maybe function login will toast error if not success
+    console.error(error);
+    isLoading.value = false;
+  }
 };
 
 const validations = {

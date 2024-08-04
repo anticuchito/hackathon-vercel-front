@@ -1,9 +1,11 @@
 import { useAuth } from '~/store/auth';
+import { useTrips } from '~/store/trips';
 import type { User } from '~/store/types';
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   if (process.client) {
     const AuthStore = useAuth();
+    const TripStore = useTrips();
 
     const AuthData = localStorage.getItem('authData');
 
@@ -16,6 +18,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       AuthStore.user = user;
       AuthStore.token = token;
       AuthStore.isAuthenticated = isAuthenticated;
+
+      TripStore.tripIds = user.tripsCreated;
+      if (TripStore.trips.length === 0) {
+        TripStore.getTrips(user.tripsCreated);
+      }
     } else {
       AuthStore.cleanStore();
       navigateTo('/');
