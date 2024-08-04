@@ -22,8 +22,8 @@ export default defineNuxtConfig({
     'nuxt-headlessui',
     '@nuxt/icon',
     '@nuxtjs/leaflet',
+    'nuxt-swiper'
   ],
-
   icon: {
     componentName: 'icon',
   },
