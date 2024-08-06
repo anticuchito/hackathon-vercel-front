@@ -2,14 +2,15 @@ export interface Trip {
   id: string;
   origin: string;
   destination: string;
-  startstring: string;
-  endstring: string;
+  startDate: string;
+  endDate: string;
   duration: number;
-  budget: number;
+  maxBudget: number;
+  minBudget: number;
   status: string;
-  notes: null;
+  notes?: string | null;
   createdAt: string;
-  upstringdAt: string;
+  updatedAt: string;
   flights: FlightElement[];
   accommodations: AccommodationElement[];
   itineraryDetails: ItineraryDetail[];
@@ -131,8 +132,8 @@ export interface Restaurant {
 export interface DataTrip {
   origin: string;
   destination: string;
-  startstring: string;
-  endstring: string;
+  startDate: string;
+  endDate: string;
   minBudget: number;
   maxBudget: number;
   adults: number;

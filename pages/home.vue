@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import useVuelidate from '@vuelidate/core';
 import { required, helpers } from '@vuelidate/validators';
-import { useTrips } from '../store/trips';
+import { useTripStore } from '../store/trip';
 import { useAuth } from '../store/auth';
 import ModalLoading from '../components/modal-loading.vue';
 const AuthStore = useAuth();
-const tripStore = useTrips();
+const tripStore = useTripStore();
 const isLoading = ref(false);
 const startFrom = new Date();
 
@@ -101,19 +101,19 @@ const inputMin = (event: Event) => {
 };
 
 const hadleSubmit = async () => {
-  isLoading.value = true;
   v$.value.$validate();
   if (v$.value.$error) {
     return;
     // or show error messages
   }
+  isLoading.value = true;
   console.log('formData', formData);
 
   if (!Object.values(formData).some((value) => value)) return;
   // call api
 
   try {
-    const trip = await tripStore.createTrip({
+    const tripId = await tripStore.createTrip({
       origin: formData.origin!,
       destination: formData.destination!,
       startDate: formData.startDate!,
@@ -124,8 +124,10 @@ const hadleSubmit = async () => {
       minors: formData.minors!,
     });
     isLoading.value = false;
-
-    AuthStore.updatedUserTripsCreated(trip?.id!);
+    // redirect to trips/:id
+    if (tripId) {
+      useRouter().push(`/trips/${tripId}`);
+    }
   } catch (error) {
     isLoading.value = false;
     console.error(error); //replace with toast

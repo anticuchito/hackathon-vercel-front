@@ -2,6 +2,7 @@
 import { defineComponent, ref, onMounted, onBeforeUnmount } from 'vue';
 import { useCity } from '~/composables/useCityStore';
 import { useTrip } from '~/composables/useTrip';
+import { useAuth } from '~/store/auth';
 import type { City, Trip } from '~/types';
 
 export default defineComponent({
@@ -12,6 +13,8 @@ export default defineComponent({
     const cities = ref<City[]>([]);
     const trips = ref<Trip[]>([]);
     const isDropdownOpen = ref<string | null>(null);
+
+    const AuthStore = useAuth();
 
     const { fetchFirstCities } = useCity();
     const { fetchFirstUniqueTrips } = useTrip();
@@ -56,6 +59,10 @@ export default defineComponent({
       document.removeEventListener('click', handleClickOutside);
     });
 
+    const signOut = async () => {
+      await AuthStore.logout();
+    };
+
     return {
       isMobileMenuOpen,
       isUserMenuOpen,
@@ -65,6 +72,7 @@ export default defineComponent({
       toggleDropdown,
       cities,
       trips,
+      signOut,
     };
   },
 });
@@ -119,7 +127,9 @@ export default defineComponent({
         </div>
 
         <!-- Logo -->
-        <div class="flex items-center justify-center sm:justify-start flex-1 sm:flex-none">
+        <div
+          class="flex items-center justify-center sm:justify-start flex-1 sm:flex-none"
+        >
           <div class="flex-shrink-0">
             <img
               class="h-8 w-auto logo"
@@ -131,8 +141,12 @@ export default defineComponent({
 
         <!-- Navigation links (hidden on mobile) -->
         <div class="hidden sm:flex sm:items-center sm:justify-center sm:flex-1">
-          <div class="flex space-x-4 items-center	">
-            <div class="relative group" @mouseleave="toggleDropdown(null)" style="margin-top: -2px;">
+          <div class="flex space-x-4 items-center">
+            <div
+              class="relative group"
+              @mouseleave="toggleDropdown(null)"
+              style="margin-top: -2px"
+            >
               <a
                 href="#"
                 class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
@@ -156,7 +170,11 @@ export default defineComponent({
                 </ul>
               </div>
             </div>
-            <div class="relative group" @mouseleave="toggleDropdown(null)" style="margin-top: -2px;" >
+            <div
+              class="relative group"
+              @mouseleave="toggleDropdown(null)"
+              style="margin-top: -2px"
+            >
               <a
                 href="#"
                 class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
@@ -203,7 +221,9 @@ export default defineComponent({
         </div>
 
         <!-- User menu -->
-        <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div
+          class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0"
+        >
           <button
             type="button"
             class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -256,20 +276,20 @@ export default defineComponent({
               tabindex="-1"
             >
               <a
-                href="#"
+                href="user/viajes-favoritos"
                 class="block px-4 py-2 text-sm text-gray-700"
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-0"
-                >Your Profile</a
+                >viajes favoritos</a
               >
               <a
-                href="#"
+                href="user/viajes-creados"
                 class="block px-4 py-2 text-sm text-gray-700"
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-1"
-                >Settings</a
+                >viajes creados</a
               >
               <a
                 href="#"
@@ -277,6 +297,7 @@ export default defineComponent({
                 role="menuitem"
                 tabindex="-1"
                 id="user-menu-item-2"
+                @click="signOut"
                 >Sign out</a
               >
             </div>
@@ -321,19 +342,17 @@ export default defineComponent({
 }
 </style>
 
-  
-  <style scoped>
-  nav{
-    background-color: rgb(20 61 35);
+<style scoped>
+nav {
+  background-color: rgb(20 61 35);
+}
+.wrapper-nav {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+@media (max-width: 800px) {
+  .logo {
+    margin-right: 30px;
   }
-  .wrapper-nav {
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-  @media (max-width: 800px) {
-      .logo{
-      margin-right: 30px;
-  }
-  }
-  </style>
-  
+}
+</style>

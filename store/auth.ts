@@ -14,7 +14,6 @@ export const useAuth = defineStore('auth', () => {
   //FIXME:add persistance to auth store becaus is not persintant dont redirect to home apropiatly and fix redorect functionality if this first time user enter to the page
 
   const login = async (email: string, password: string) => {
-    console.log('entered login');
     const { data } = await axiosInstance.post<LoginResponse>('auth/login', {
       email,
       password,
@@ -40,7 +39,6 @@ export const useAuth = defineStore('auth', () => {
     localStorage.setItem('authData', JSON.stringify(storeAuthData));
 
     useRouter().replace('/home');
-    console.log('user logged in', user.value);
   };
 
   const register = async (dataRegister: dataRegister) => {
@@ -49,9 +47,6 @@ export const useAuth = defineStore('auth', () => {
       .post('auth/register', dataRegister)
       .then((res) => res.data)
       .catch((err) => console.log(err));
-
-    //maibe redircet to login page
-    console.log('user registered', resp);
 
     useRouter().replace('/login');
   };
@@ -95,11 +90,20 @@ export const useAuth = defineStore('auth', () => {
   };
 
   const updatedUserTripsCreated = (tripId: string) => {
-    console.log('user trips created', user.value?.tripsCreated);
-
     user.value?.tripsCreated.push(tripId);
 
     localStorage.setItem('authData', JSON.stringify(user.value));
+  };
+
+  const logout = async () => {
+    await axiosInstance.post(
+      'auth/logout',
+      {},
+      { headers: { Authorization: `Bearer ${token.value}` } }
+    );
+
+    cleanStore();
+    useRouter().replace('/');
   };
   return {
     user,
@@ -112,6 +116,7 @@ export const useAuth = defineStore('auth', () => {
     cleanStore,
     persistAuthData,
     updatedUserTripsCreated,
+    logout,
   };
 });
 

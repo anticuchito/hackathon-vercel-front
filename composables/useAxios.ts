@@ -1,7 +1,8 @@
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
 import { useAuth } from '~/store/auth';
-const baseURL = process.env.API_URL || 'http://localhost:3001';
+const baseURL =
+  process.env.API_URL || 'https://hackaton-vercel-backend.vercel.app';
 const adminURL = `${baseURL}/api`;
 
 const axiosInstance: AxiosInstance = axios.create({
