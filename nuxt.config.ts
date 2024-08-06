@@ -2,10 +2,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   devtools: { enabled: true },
-  plugins: [
-    '~/plugins/vue-tailwind-datepicker.ts',
-    // '~/plugins/axios-client.ts',
-  ],
+  plugins: ['~/plugins/vue-tailwind-datepicker.ts', '~/plugins/axiosClient.ts'],
   components: [
     {
       path: '~/components',
@@ -22,9 +19,11 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     '@vueuse/nuxt',
     ['@pinia/nuxt', { autoImports: ['defineStore'] }],
+    'nuxt-headlessui',
     '@nuxt/icon',
+    '@nuxtjs/leaflet',
+    'nuxt-swiper'
   ],
-
   icon: {
     componentName: 'icon',
   },

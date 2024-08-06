@@ -23,9 +23,17 @@ const handleLogin = async () => {
     // or show error messages
   }
   isLoading.value = true;
-  await auth.login(formData.email, formData.password);
-  // maybe function login will toast error if not success
-  isLoading.value = false;
+
+  try {
+    await auth.login(formData.email, formData.password);
+    // maybe function login will toast error if not success
+    isLoading.value = false;
+  } catch (error) {
+    // handle error
+    // maybe function login will toast error if not success
+    console.error(error);
+    isLoading.value = false;
+  }
 };
 
 const validations = {
@@ -103,7 +111,6 @@ const v$ = useVuelidate(validations, formData);
         </div>
         <button
           class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-          type="submit"
           :disabled="v$.email.$error || v$.password.$error"
         >
           <span v-if="!isLoading">Sign in</span>

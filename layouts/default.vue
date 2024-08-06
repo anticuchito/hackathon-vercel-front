@@ -1,25 +1,17 @@
 <script setup lang="ts">
 // import {  } from "";
 import ChatBox from '@/components/ChatBox.vue';
-
+import Nav from '~/components/Nav.vue';
 </script>
 
 <template>
   <!--TODO: make this  content changes when the user is loggedIn or not  -->
-  <header class="bg-background text-foreground py-2 px-4 md:px-6 border-b">
-    <div class="flex justify-between items-center max-w-4xl mx-auto">
-      <nav class="flex gap-4">
-        <a class="hover:underline text-sm" href="#">
-          Presupuestos recomendados
-        </a>
-        <a class="hover:underline text-sm" href="#">
-          Presupuestos generados por la comunidad
-        </a>
-        <a class="hover:underline text-sm" href="#"> Vuelos </a>
-        <a class="hover:underline text-sm" href="#"> Hoteles </a>
-      </nav>
-    </div>
-  </header>
+<header>
+
+  <Nav />
+</header>
+
+  
   <main>
     <NuxtPage />
   </main>

@@ -1,9 +1,9 @@
-// import axiosClient from '../plugins/axios-client';
 import type { LoginResponse, User } from './types';
 import { useAxios } from '@/composables/useAxios';
 import { ref } from 'vue';
 
 export const useAuth = defineStore('auth', () => {
+  const { axiosAdminInstance, axiosInstance } = useAxios();
   const user = ref<User | null>(null);
   const isAuthenticated = ref(false);
   const token = ref<string | null | undefined>(null);
@@ -14,14 +14,10 @@ export const useAuth = defineStore('auth', () => {
   //FIXME:add persistance to auth store becaus is not persintant dont redirect to home apropiatly and fix redorect functionality if this first time user enter to the page
 
   const login = async (email: string, password: string) => {
-    console.log('entered login');
-    const { data } = await useAxios().axiosInstance.post<LoginResponse>(
-      'auth/login',
-      {
-        email,
-        password,
-      }
-    );
+    const { data } = await axiosInstance.post<LoginResponse>('auth/login', {
+      email,
+      password,
+    });
 
     user.value = data.user;
     const tokenCookie = useCookie('auth_token', {
@@ -43,18 +39,14 @@ export const useAuth = defineStore('auth', () => {
     localStorage.setItem('authData', JSON.stringify(storeAuthData));
 
     useRouter().replace('/home');
-    console.log('user logged in', user.value);
   };
 
   const register = async (dataRegister: dataRegister) => {
     console.log('entered register', dataRegister);
-    const resp = await useAxios()
-      .axiosInstance.post('auth/register', dataRegister)
+    const resp = await axiosInstance
+      .post('auth/register', dataRegister)
       .then((res) => res.data)
       .catch((err) => console.log(err));
-
-    //maibe redircet to login page
-    console.log('user registered', resp);
 
     useRouter().replace('/login');
   };
@@ -97,6 +89,22 @@ export const useAuth = defineStore('auth', () => {
     isAuthenticated.value = isAuthenticated;
   };
 
+  const updatedUserTripsCreated = (tripId: string) => {
+    user.value?.tripsCreated.push(tripId);
+
+    localStorage.setItem('authData', JSON.stringify(user.value));
+  };
+
+  const logout = async () => {
+    await axiosInstance.post(
+      'auth/logout',
+      {},
+      { headers: { Authorization: `Bearer ${token.value}` } }
+    );
+
+    cleanStore();
+    useRouter().replace('/');
+  };
   return {
     user,
     isAuthenticated,
@@ -107,6 +115,8 @@ export const useAuth = defineStore('auth', () => {
     register,
     cleanStore,
     persistAuthData,
+    updatedUserTripsCreated,
+    logout,
   };
 });
 
